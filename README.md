@@ -1,2 +1,2 @@
 # recipebook
-A simple recipe book built in Django and Semantic UI.
+A simple recipe book built in Flask and Bootstrap.
