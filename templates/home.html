@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block body %}
+
+<div class="container-fluid">
+	<div class="row row-cols-auto">
+
+		{% for recipe in recipes %}
+
+		<div class="col">
+			<div class="card shadow p-3 mb-5 bg-body rounded justify-content-center" style="width: 18rem;">
+				<img src="" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">{{ recipe.title }}</h5>
+					<p class="card-text" style="color: #767575;"><i data-feather="user" style="width: 17;"></i> {{ recipe.author }} <br> <i data-feather="clock" style="width: 17;"></i> {{ recipe.prep_time }} min</p>
+					<a href="#" class="btn btn-outline-secondary">Leggi</a>
+				</div>
+			</div>
+		</div>
+
+		{% endfor %}
+
+	</div>
+</div>
+
+{% endblock body %}
