@@ -1,5 +1,8 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, flash, redirect
+from forms import RegistrationForm, LoginForm
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = '272e5d74fdba4572ea84ab0e570da26a'
 
 recipes = [
     {
@@ -36,9 +39,27 @@ def recipe():
     return render_template('recipe.html', recipes=recipes)
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        # dati a caso per prova ----------
+        if form.username.data == 'pollo' and form.password.data == 'pass': 
+            flash(f'Login eseguito come {form.username.data}!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash(f'Login non riuscito, per favore controlla nome utente e password.', 'danger')
+        # dati a caso per prova ------------
+    return render_template('login.html', form=form)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Account creato per {form.username.data}!', 'success')
+        return redirect(url_for('home'))
+    return render_template('register.html', form=form)
 
 
 if __name__ == '__main__':

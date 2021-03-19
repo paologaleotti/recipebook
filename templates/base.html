@@ -25,16 +25,32 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="/">Home</a>
-					</li>
-
+						<a class="nav-link" href="{{ url_for('home') }}">Home</a>
+					  </li>
 				</ul>
-				<form class="d-flex">
-					<button class="btn btn-outline-dark" href="/login">Login</button>
-				</form>
+				<ul class="navbar-nav mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('login') }}">Login</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="{{ url_for('register') }}">Registrati</a>
+					  </li>
+				</ul>
 			</div>
 		</div>
 	</nav><br>
+
+	<!-- Scorro tutti i messaggi flash di flask e li mostro a seconda della loro categoria -->
+	{% with messages = get_flashed_messages(with_categories=True) %}
+		{% if messages%}
+			{% for category, message in messages %}
+				<div class="alert alert-{{ category }}" style="margin-left: 20px; margin-right: 20px;">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
 	{% block body %}
 
 	{% endblock body %}

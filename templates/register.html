@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}
+Registrati
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-sm">
+			<!-- One of three columns -->
+		</div>
+		<div class="col-lg-4">
+			<!-- INIZIO COLONNA -->
+			<div>
+				<form method="POST" action="">
+					{{ form.hidden_tag() }}
+					<fieldset class="form-control">
+						<legend>Registrati ora</legend>
+						<div class="form-group">
+							{{ form.email.label(class="form-control-label") }}
+							
+							<!-- Controllo se form ha errori, se si li stampo -->
+							{% if form.email.errors %}
+								{{ form.email(class="form-control form-control-lg is-invalid") }}
+								<div class="invalid-feedback">
+									{% for errors in form.email.errors %}
+										<span> {{ error }} </span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.email(class="form-control form-control-lg") }}
+							{% endif %}
+
+						</div><br>
+						<div class="form-group">
+							{{ form.username.label(class="form-control-label") }}
+
+							<!-- Controllo se form ha errori, se si li stampo -->
+							{% if form.username.errors %}
+								{{ form.username(class="form-control form-control-lg is-invalid") }}
+								<div class="invalid-feedback">
+									{% for errors in form.username.errors %}
+										<span> {{ error }} </span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.username(class="form-control form-control-lg") }}
+							{% endif %}
+							
+						</div><br>
+						<div class="form-group">
+							{{ form.password.label(class="form-control-label") }}
+
+							<!-- Controllo se form ha errori, se si li stampo -->
+							{% if form.password.errors %}
+								{{ form.password(class="form-control form-control-lg is-invalid") }}
+								<div class="invalid-feedback">
+									{% for errors in form.password.errors %}
+										<span> {{ error }} </span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.password(class="form-control form-control-lg") }}
+							{% endif %}
+							
+						</div><br>
+						<div class="form-group">
+							{{ form.confirm_password.label(class="form-control-label") }}
+
+							<!-- Controllo se form ha errori, se si li stampo -->
+							{% if form.password.errors %}
+								{{ form.password(class="form-control form-control-lg is-invalid") }}
+								<div class="invalid-feedback">
+									{% for errors in form.password.errors %}
+										<span> {{ error }} </span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.password(class="form-control form-control-lg") }}
+							{% endif %}
+
+						</div><br>
+					</fieldset><br>
+					<div class="form-group">
+						{{ form.submit(class="btn btn-outline-info") }}
+					</div><br>
+					<!-- <div class="mb-3">
+					<label class="form-label">Username</label>
+					<input type="username" class="form-control" name="username">
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputPassword1" class="form-label">Password</label>
+					<input type="password" class="form-control" name="pass">
+				</div>
+				<button type="submit" class="btn btn-primary">Login</button> -->
+				</form>
+			</div>
+			<div class="border-top pt-3">
+				<small class="text-muted">
+					Hai già un account? <a href="{{ url_for('login') }}" class="ml-2">Esegui il login</a>
+				</small>
+			</div>
+
+		</div><!-- FINE COLONNA -->
+		<div class="col-sm">
+			<!-- One of three columns -->
+		</div>
+	</div>
+</div>
+
+{% endblock body %}

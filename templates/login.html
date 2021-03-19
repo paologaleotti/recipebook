@@ -10,10 +10,57 @@ Login
 		<div class="col-sm">
 			<!-- One of three columns -->
 		</div>
-		<div class="col-sm"><!-- INIZIO COLONNA -->
-			<h1 class="display-4">Login</h1>
-			<form method="post" action="">
-				<div class="mb-3">
+		<div class="col-lg-4">
+			<!-- INIZIO COLONNA -->
+			<div>
+				<form method="POST" action="">
+					{{ form.hidden_tag() }}
+					<fieldset class="form-control">
+						<legend>Login</legend>
+						<div class="form-group">
+							{{ form.username.label(class="form-control-label") }}
+
+							<!-- Controllo se form ha errori, se si li stampo -->
+							{% if form.username.errors %}
+								{{ form.username(class="form-control form-control-lg is-invalid") }}
+								<div class="invalid-feedback">
+									{% for errors in form.username.errors %}
+										<span> {{ error }} </span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.username(class="form-control form-control-lg") }}
+							{% endif %}
+							
+						</div><br>
+						<div class="form-group">
+							{{ form.password.label(class="form-control-label") }}
+
+							<!-- Controllo se form ha errori, se si li stampo -->
+							{% if form.password.errors %}
+								{{ form.password(class="form-control form-control-lg is-invalid") }}
+								<div class="invalid-feedback">
+									{% for errors in form.password.errors %}
+										<span> {{ error }} </span>
+									{% endfor %}
+								</div>
+							{% else %}
+								{{ form.password(class="form-control form-control-lg") }}
+							{% endif %}
+							
+						</div><br>
+						<div class="form-check">
+							{{ form.remember(class="form-check-input")}}
+							{{ form.remember.label(class="form-check-label")}}
+						</div>
+					</fieldset><br>
+					<div class="form-group">
+						{{ form.submit(class="btn btn-outline-info") }}
+					</div><br>
+					<small class="text-muted">
+						<a href="#">Password dimenticata?</a>
+					</small>
+					<!-- <div class="mb-3">
 					<label class="form-label">Username</label>
 					<input type="username" class="form-control" name="username">
 				</div>
@@ -21,8 +68,15 @@ Login
 					<label for="exampleInputPassword1" class="form-label">Password</label>
 					<input type="password" class="form-control" name="pass">
 				</div>
-				<button type="submit" class="btn btn-primary">Login</button>
-			</form>
+				<button type="submit" class="btn btn-primary">Login</button> -->
+				</form>
+			</div><br>
+			<div class="border-top pt-3">
+				<small class="text-muted">
+					Non hai ancora un accont? <a href="{{ url_for('register') }}" class="ml-2">Registrati</a>
+				</small>
+			</div>
+
 		</div><!-- FINE COLONNA -->
 		<div class="col-sm">
 			<!-- One of three columns -->
